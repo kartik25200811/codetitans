@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>AlgoLab – Visualize Algorithms</title>
+<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="ai-boost.css">
+<!-- Paste your Cloudflare Worker URL below to switch on real OpenAI answers for every visitor (see openai-proxy-worker.js) -->
+<meta name="algolab-proxy-url" content="">
+</head>
+<body>
+<header>
+  <a class="logo" href="#" data-p="home">⬡ AlgoLab</a>
+  <button id="menu" aria-label="Toggle menu">☰</button>
+  <nav id="nav">
+    <a href="#" data-p="home">Home</a><a href="#" data-p="dash">Dashboard</a><a href="#" data-p="sorting">Sorting</a><a href="#" data-p="searching">Searching</a>
+    <a href="#" data-p="ds">Data Structures</a><a href="#" data-p="tg">Trees &amp; Graphs</a><a href="#" data-p="bug">Bug Hunter</a><a href="#" data-p="learn">Learn</a><a href="#" data-p="practice">Practice</a><a href="#" data-p="ai">AI Assistant</a>
+  </nav>
+  <button id="theme" aria-label="Toggle light/dark theme">◐</button>
+</header>
+
+<main>
+<!-- HOME -->
+<section class="page" id="home">
+  <div class="hero">
+    <div>
+      <h1>Visualize Algorithms.<br><span class="grad">Understand Logic.</span><br>Master DSA.</h1>
+      <p>Learn data structures and algorithms interactively: watch every comparison, control every step, and read a plain-English explanation of what happens next.</p>
+      <div class="row"><button class="btn primary" data-go="sorting">Start Visualizing</button><button class="btn" data-go="learn">Explore Algorithms</button></div>
+    </div>
+    <div class="hero-bars" aria-hidden="true"></div>
+  </div>
+  <!-- ===== Added: feature showcase + AI study panel (additive) ===== -->
+  <div class="ab-stats" aria-label="AlgoLab at a glance">
+    <div><b>7</b><span>Sorting algorithms</span></div><div><b>10+</b><span>Interactive visualizers</span></div>
+    <div><b>9</b><span>Bug Hunter levels</span></div><div><b>25</b><span>Quiz questions</span></div><div><b>AI</b><span>Tutor built in</span></div>
+  </div>
+  <section class="ab-ai" aria-labelledby="ab-ai-h">
+    <div class="ab-head"><h2 id="ab-ai-h">🤖 AI-powered learning</h2><span class="ab-pill" id="ab-status" role="status">● Demo mode</span></div>
+    <p>Stuck? Pick any topic and let the AI tutor explain it, quiz you, set practice problems or plan your study week. Every visualizer page also has its own “AI help” buttons.</p>
+    <input id="ab-topic" placeholder="Type a topic, e.g. merge sort, BFS, linked list…" aria-label="Topic for the AI tutor" autocomplete="off">
+    <div class="ab-chips">
+      <button type="button" class="btn primary" data-ab="explain">🧠 Explain it simply</button><button type="button" class="btn" data-ab="quiz">📝 Quiz me</button>
+      <button type="button" class="btn" data-ab="practice">💪 Practice problem</button><button type="button" class="btn" data-ab="compare">⚖️ Compare</button><button type="button" class="btn" data-ab="plan">🗓️ Study plan</button>
+    </div>
+    <p class="muted ab-note">Connect OpenAI in <b>AI settings</b> inside the assistant for full smart answers. Without it, common DSA questions get instant built-in answers and anything else is looked up on Wikipedia.</p>
+  </section>
+  <h2>Everything inside AlgoLab</h2>
+  <div class="ab-feats">
+    <a href="#" class="ab-f" data-go="sorting"><i>📊</i><h3>Sorting Visualizer</h3><p>Bubble, Selection, Insertion, Merge, Quick, Heap and Counting sort. Custom arrays, size and speed sliders, ascending or descending.</p></a>
+    <a href="#" class="ab-f" data-go="searching"><i>🔍</i><h3>Searching</h3><p>Linear and Binary search with the eliminated range shown. Unsorted input is sorted for you, and AlgoLab tells you.</p></a>
+    <a href="#" class="ab-f" data-go="ds"><i>🔗</i><h3>Linked Lists</h3><p>Singly, doubly and circular lists. Insert, delete, search and traverse with pointer animations.</p></a>
+    <a href="#" class="ab-f" data-go="ds"><i>📚</i><h3>Stack &amp; Queue</h3><p>Push, pop, enqueue and dequeue, with clear overflow and underflow messages.</p></a>
+    <a href="#" class="ab-f" data-go="tg"><i>🌳</i><h3>Trees</h3><p>Binary Search Tree and Binary Tree. Insert, delete, search, random trees and four traversals.</p></a>
+    <a href="#" class="ab-f" data-go="tg"><i>🕸️</i><h3>Graphs: BFS &amp; DFS</h3><p>Draw your own edges or randomize a graph, then step through BFS and DFS.</p></a>
+    <a href="#" class="ab-f" data-go="bug"><i>🐞</i><h3>Bug Hunter</h3><p>A game: find the one bug in classic algorithm code. 9 levels, 3 lives, hints cost points.</p></a>
+    <a href="#" class="ab-f" data-go="practice"><i>📝</i><h3>Quiz Challenge</h3><p>10 random questions from a bank of 25, with an explanation after every answer.</p></a>
+    <a href="#" class="ab-f" data-go="dash"><i>🎓</i><h3>Student Dashboard</h3><p>Accuracy by topic, recent attempts and the exact questions you should review.</p></a>
+    <a href="#" class="ab-f" data-go="learn"><i>📖</i><h3>Learn</h3><p>Complexity reference table and pseudocode for every algorithm, by level.</p></a>
+    <a href="#" class="ab-f" data-go="ai"><em>AI</em><i>🤖</i><h3>AI Assistant</h3><p>Ask anything about DSA. Smart answers with OpenAI, instant built-in answers, and live web search.</p></a>
+  </div>
+  <div class="ab-tags" aria-label="Built for learning"><span>⏯ Play, Prev &amp; Next step controls</span><span>💬 Plain-English narration</span><span>🌗 Light &amp; dark theme</span><span>📱 Works on mobile</span><span>💾 Progress saved in your browser</span></div>
+  <h2>How it works</h2>
+  <div class="ab-steps">
+    <div><b>Pick a topic</b><span>Choose an algorithm or data structure from the menu or the cards above.</span></div>
+    <div><b>Watch &amp; control it</b><span>Step through every comparison and read what happens next in plain English.</span></div>
+    <div><b>Test &amp; ask the AI</b><span>Take a quiz, hunt bugs, and ask the AI tutor whenever you get stuck.</span></div>
+  </div>
+  <!-- ===== end of added block ===== -->
+  <h2>Featured</h2>
+  <div class="grid">
+    <div class="card link" data-go="sorting"><h3>Sorting</h3><p>Bubble, Selection, Insertion, Merge, Quick, Heap and Counting sort.</p></div>
+    <div class="card link" data-go="searching"><h3>Searching</h3><p>Linear and Binary search with the eliminated range shown.</p></div>
+    <div class="card link" data-go="ds"><h3>Linked List</h3><p>Singly, doubly and circular lists with pointer animations.</p></div>
+    <div class="card link" data-go="ds"><h3>Stack &amp; Queue</h3><p>LIFO and FIFO with overflow/underflow messages.</p></div>
+    <div class="card link" data-go="bug"><h3>🐞 Bug Hunter</h3><p>A game: find and fix the bug in classic algorithm code across 9 levels.</p></div>
+  </div>
+  <h2>Ask the AI assistant</h2>
+  <div class="assistant" data-assistant="compact"></div>
+  <h2>Your progress</h2>
+  <div class="grid">
+    <div class="card"><h3 id="pv">0 / 4</h3><p>Visualizers explored</p><div class="meter"><i id="pvbar"></i></div></div>
+    <div class="card"><h3 id="pq">–</h3><p>Best quiz score</p><div class="meter"><i id="pqbar"></i></div></div>
+  </div>
+  <div class="row"><button class="btn" data-go="dash">Open student dashboard →</button></div>
+  <h2>Beginner roadmap</h2>
+  <ol class="road">
+    <li><b>Arrays &amp; Big-O</b> – indexing, loops, how cost grows.</li>
+    <li><b>Searching</b> – linear, then binary search.</li>
+    <li><b>Simple sorts</b> – bubble, selection, insertion.</li>
+    <li><b>Linked lists, stacks, queues</b> – pointers and ordering rules.</li>
+    <li><b>Efficient sorts</b> – merge, quick, heap, counting.</li>
+    <li><b>Trees &amp; graphs</b> – BFS and DFS (see Trees &amp; Graphs).</li>
+  </ol>
+</section>
+
+<!-- SORTING -->
+<section class="page" id="sorting" hidden>
+  <h2>Sorting Visualizer</h2>
+  <div class="panel controls">
+    <label>Algorithm <select id="s-algo">
+      <option value="bubble">Bubble Sort</option><option value="selection">Selection Sort</option><option value="insertion">Insertion Sort</option>
+      <option value="merge">Merge Sort</option><option value="quick">Quick Sort</option><option value="heap">Heap Sort</option><option value="counting">Counting Sort</option></select></label>
+    <label>Order <select id="s-order"><option value="asc">Ascending</option><option value="desc">Descending</option></select></label>
+    <label>Size <input type="range" id="s-size" min="5" max="40" value="15"></label>
+    <label>Speed <input type="range" id="s-speed" min="1" max="10" value="6"></label>
+    <button class="btn" id="s-rand">Random array</button>
+  </div>
+  <div class="panel controls">
+    <input id="s-custom" placeholder="Custom array: 5, 3, 8, 1 (values 1–999)" aria-label="Custom array">
+    <button class="btn" id="s-apply">Use array</button>
+    <button class="btn" id="s-prev">⏮ Prev</button><button class="btn primary" id="s-play">▶ Play</button><button class="btn" id="s-next">Next ⏭</button><button class="btn" id="s-reset">Reset</button>
+  </div>
+  <div class="bars" id="s-bars"></div>
+  <div class="legend"><i class="k cmp"></i>Comparing <i class="k swp"></i>Swap / write <i class="k sorted"></i>Sorted</div>
+  <div class="grid two">
+    <div class="panel"><h3>What's happening</h3><p id="s-text" class="say"></p><p class="muted" id="s-stats"></p></div>
+    <div class="panel"><h3 id="s-name"></h3><p id="s-desc"></p><table class="mini" id="s-cx"></table><h3>Pseudocode</h3><pre id="s-pseudo"></pre></div>
+  </div>
+</section>
+
+<!-- SEARCHING -->
+<section class="page" id="searching" hidden>
+  <h2>Searching Visualizer</h2>
+  <div class="panel controls">
+    <label>Algorithm <select id="q-algo"><option value="linear">Linear Search</option><option value="binary">Binary Search</option></select></label>
+    <input id="q-arr" value="14, 3, 27, 9, 41, 18, 6, 33" aria-label="Array">
+    <input id="q-target" type="number" value="18" aria-label="Target" style="width:90px">
+    <label>Speed <input type="range" id="q-speed" min="1" max="10" value="5"></label>
+    <button class="btn primary" id="q-start">Load search</button>
+  </div>
+  <div class="panel controls"><button class="btn primary" id="q-play">▶ Play</button><button class="btn" id="q-next">Step ⏭</button><button class="btn" id="q-reset">Reset</button></div>
+  <p class="muted">Binary search needs a sorted array. If yours isn't sorted, AlgoLab sorts it first and tells you.</p>
+  <div class="cells" id="q-cells"></div>
+  <div class="qcmp" id="q-cmp"></div>
+  <div class="grid two">
+    <div class="panel"><h3>What's happening</h3><p id="q-text" class="say"></p><p class="muted" id="q-stats"></p></div>
+    <div class="panel"><h3>Complexity</h3><table class="mini" id="q-cx"></table><h3>Pseudocode</h3><pre id="q-pseudo"></pre></div>
+  </div>
+</section>
+
+<!-- DATA STRUCTURES -->
+<section class="page" id="ds" hidden>
+  <h2>Data Structures Lab</h2>
+  <div class="tabs"><button class="on" data-t="t-ll">Linked List</button><button data-t="t-st">Stack</button><button data-t="t-qu">Queue</button></div>
+
+  <div class="tab" id="t-ll">
+    <div class="panel controls">
+      <label>Type <select id="ll-type"><option value="singly">Singly</option><option value="doubly">Doubly</option><option value="circular">Circular</option></select></label>
+      <input id="ll-val" type="number" placeholder="Value" style="width:90px"><input id="ll-pos" type="number" placeholder="Position" style="width:100px" min="0">
+    </div>
+    <div class="panel controls">
+      <button class="btn" data-ll="insHead">Insert head</button><button class="btn" data-ll="insTail">Insert tail</button><button class="btn" data-ll="insAt">Insert at pos</button>
+      <button class="btn" data-ll="delHead">Delete head</button><button class="btn" data-ll="delTail">Delete tail</button><button class="btn" data-ll="delAt">Delete at pos</button>
+      <button class="btn" data-ll="search">Search value</button><button class="btn" data-ll="traverse">Traverse</button>
+    </div>
+    <div class="ds-view" id="ll"></div>
+    <div class="panel"><p class="say" id="ll-text">Pick an operation. Positions start at 0.</p></div>
+    <div class="panel"><h3>Pseudocode</h3><pre id="ll-pseudo"></pre></div>
+  </div>
+
+  <div class="tab" id="t-st" hidden>
+    <div class="panel controls"><input id="st-val" type="number" placeholder="Value" style="width:100px">
+      <button class="btn primary" id="st-push">Push</button><button class="btn" id="st-pop">Pop</button><button class="btn" id="st-peek">Peek</button><button class="btn" id="st-clear">Clear</button></div>
+    <div class="ds-view stack" id="st"></div>
+    <div class="panel"><p class="say" id="st-text">Stack is LIFO: Last In, First Out. Only the TOP can be touched. Capacity: 8.</p></div>
+    <div class="panel"><h3>Pseudocode</h3><pre id="st-pseudo"></pre></div>
+  </div>
+
+  <div class="tab" id="t-qu" hidden>
+    <div class="panel controls"><input id="qu-val" type="number" placeholder="Value" style="width:100px">
+      <button class="btn primary" id="qu-enq">Enqueue</button><button class="btn" id="qu-deq">Dequeue</button><button class="btn" id="qu-front">Front</button><button class="btn" id="qu-rear">Rear</button><button class="btn" id="qu-clear">Clear</button></div>
+    <div class="ds-view" id="qu"></div>
+    <div class="panel"><p class="say" id="qu-text">Queue is FIFO: First In, First Out. Add at the rear, remove from the front. Capacity: 8.</p></div>
+    <div class="panel"><h3>Pseudocode</h3><pre id="qu-pseudo"></pre></div>
+  </div>
+</section>
+
+<!-- TREES & GRAPHS -->
+<section class="page" id="tg" hidden>
+  <h2>Trees &amp; Graphs</h2>
+  <div class="tabs"><button class="on" data-t="t-tree">Trees</button><button data-t="t-graph">Graphs (BFS / DFS)</button></div>
+
+  <div class="tab" id="t-tree">
+    <div class="panel controls">
+      <label>Type <select id="t-mode"><option value="bst">Binary Search Tree</option><option value="bt">Binary Tree (level order)</option></select></label>
+      <input id="t-val" type="number" placeholder="Value" style="width:100px">
+      <button class="btn primary" id="t-ins">Insert</button><button class="btn" id="t-del">Delete</button><button class="btn" id="t-find">Search</button>
+      <button class="btn" id="t-rand">Random tree</button><button class="btn" id="t-clear">Clear</button>
+    </div>
+    <div class="panel controls">
+      <label>Traversal <select id="t-trav"><option value="in">Inorder</option><option value="pre">Preorder</option><option value="post">Postorder</option><option value="level">Level order (BFS)</option></select></label>
+      <button class="btn primary" id="t-run">Run traversal</button>
+    </div>
+    <div class="panel scroll"><svg id="t-svg" role="img" aria-label="Tree diagram"></svg></div>
+    <div class="grid two">
+      <div class="panel"><h3>What's happening</h3><p class="say" id="t-say">Insert values to grow the tree. In a BST, smaller values go left and larger go right.</p><p class="muted" id="t-order"></p></div>
+      <div class="panel"><h3>Complexity</h3>
+        <table class="mini"><tr><th>Operation</th><th>Average</th><th>Worst</th></tr>
+        <tr><td>BST insert / search / delete</td><td>O(log n)</td><td>O(n)</td></tr>
+        <tr><td>Any traversal</td><td>O(n)</td><td>O(n)</td></tr>
+        <tr><td>Space (recursion)</td><td>O(log n)</td><td>O(n)</td></tr></table>
+        <p class="muted">Worst case happens when a BST degenerates into a chain (e.g. inserting 1, 2, 3, 4…).</p></div>
+    </div>
+    <div class="panel"><h3>Pseudocode</h3><pre id="t-pseudo"></pre></div>
+  </div>
+
+  <div class="tab" id="t-graph" hidden>
+    <div class="panel controls">
+      <label>Algorithm <select id="g-algo"><option value="bfs">BFS (queue)</option><option value="dfs">DFS (stack / recursion)</option></select></label>
+      <label>Start <select id="g-start"></select></label>
+      <label>Speed <input type="range" id="g-speed" min="1" max="10" value="5"></label>
+    </div>
+    <div class="panel controls">
+      <input id="g-edges" placeholder="Edges: A-B, B-C" style="flex:1;min-width:200px" aria-label="Edges">
+      <button class="btn" id="g-apply">Use edges</button><button class="btn" id="g-rand">Random graph</button>
+    </div>
+    <div class="panel controls"><button class="btn" id="g-prev">⏮ Prev</button><button class="btn primary" id="g-play">▶ Play</button><button class="btn" id="g-next">Next ⏭</button><button class="btn" id="g-reset">Reset</button></div>
+    <div class="panel"><svg id="g-svg" viewBox="0 0 360 300" role="img" aria-label="Graph diagram"></svg></div>
+    <div class="legend"><i class="k cmp"></i>Current <i class="k" style="background:var(--b)"></i>Visited <span>Bright edges = traversal tree</span></div>
+    <div class="grid two">
+      <div class="panel"><h3>What's happening</h3><p class="say" id="g-text"></p><p class="muted" id="g-ds"></p><p class="muted" id="g-order"></p></div>
+      <div class="panel"><h3>Complexity</h3>
+        <table class="mini"><tr><th>Algorithm</th><th>Time</th><th>Space</th></tr><tr><td>BFS</td><td>O(V + E)</td><td>O(V)</td></tr><tr><td>DFS</td><td>O(V + E)</td><td>O(V)</td></tr></table>
+        <p class="muted">BFS explores level by level (shortest path in unweighted graphs). DFS goes as deep as possible, then backtracks.</p></div>
+    </div>
+    <div class="panel"><h3>Pseudocode</h3><pre id="g-pseudo"></pre></div>
+  </div>
+</section>
+
+<!-- BUG HUNTER -->
+<section class="page" id="bug" hidden>
+  <h2>🐞 Bug Hunter</h2>
+  <p class="muted">Every level shows an algorithm with exactly one bug. Click the buggy line, then pick the correct fix. You get 3 lives per level; hints cost points. Beat a level to unlock the next.</p>
+  <div class="row" style="margin:8px 0">
+    <button class="btn" id="bg-restart">↻ Restart level</button>
+    <button class="btn" id="bg-reset">⟲ Reset game</button>
+    <span class="muted" id="bg-reset-msg" role="status"></span>
+  </div>
+  <div class="levels" id="bg-levels"></div>
+  <div class="panel" id="bg-game"></div>
+</section>
+
+<!-- STUDENT DASHBOARD -->
+<section class="page" id="dash" hidden>
+  <h2>🎓 Student Dashboard</h2>
+  <div class="panel controls">
+    <label>Your name <input id="dash-name" maxlength="30" placeholder="Student name"></label>
+    <span id="dash-hello" class="say" style="min-height:0"></span>
+  </div>
+  <div class="grid" id="dash-stats"></div>
+  <div class="grid two">
+    <div class="panel"><h3>Quiz accuracy by topic</h3><div id="dash-topics"></div></div>
+    <div class="panel"><h3>Recent quiz attempts</h3><div class="scroll" id="dash-hist"></div></div>
+  </div>
+  <div class="panel"><h3>Questions to review</h3><div id="dash-missed"></div></div>
+  <div class="row">
+    <button class="btn primary" data-go="practice">Take a quiz</button>
+    <button class="btn" data-go="bug">Play Bug Hunter</button>
+    <button class="btn" id="dash-reset">Reset quiz &amp; exploration stats</button>
+  </div>
+</section>
+
+<!-- LEARN -->
+<section class="page" id="learn" hidden>
+  <h2>Learn</h2>
+  <div class="grid">
+    <div class="card"><h3>Beginner</h3><p>Arrays, Big-O, linear search, bubble/selection/insertion sort, stack and queue basics.</p></div>
+    <div class="card"><h3>Intermediate</h3><p>Binary search, linked lists, merge sort, quick sort, counting sort.</p></div>
+    <div class="card"><h3>Advanced</h3><p>Heap sort, recursion trade-offs, amortized analysis, stability and in-place sorting.</p></div>
+  </div>
+  <h3>Complexity reference</h3>
+  <div class="scroll"><table class="mini" id="ref"></table></div>
+  <h3>Pseudocode for every algorithm</h3>
+  <div id="all-pseudo"></div>
+</section>
+
+<!-- PRACTICE / QUIZ -->
+<section class="page" id="practice" hidden>
+  <h2>Quiz Challenge</h2>
+  <div class="panel" id="quiz"></div>
+</section>
+
+<!-- AI -->
+<section class="page" id="ai" hidden>
+  <h2>AI Assistant <span class="badge" id="ai-badge">Web search on</span></h2>
+  <p class="muted">Connect OpenAI under <b>AI settings</b> for smart answers. Without it, common DSA questions are answered instantly and everything else is looked up on Wikipedia. Start a message with <b>search:</b> to force a web search.</p>
+  <div class="assistant" data-assistant></div>
+</section>
+</main>
+
+<div id="ai-teaser" role="status" hidden>
+  <button class="tx" id="ai-teaser-open" type="button"></button>
+  <button class="x" id="ai-teaser-x" type="button" aria-label="Dismiss">×</button>
+</div>
+<section id="ai-pop" class="ai-pop" role="dialog" aria-label="AlgoLab AI assistant" hidden>
+  <div class="pop-head"><b>🤖 AlgoLab Assistant</b>
+    <span><button type="button" data-go="ai" title="Open full page" aria-label="Open full page">⤢</button><button type="button" id="pop-close" aria-label="Close assistant">×</button></span></div>
+  <div class="assistant" data-assistant="compact"></div>
+</section>
+<button id="fab" type="button" aria-label="Open AI assistant" aria-expanded="false" aria-controls="ai-pop"><span class="ico">💬</span><span class="dot" id="fab-dot"></span></button>
+<footer><b>AlgoLab</b> · <a href="#" data-go="home">About</a> · <a href="mailto:hello@example.com">Contact</a> · <a href="https://github.com" target="_blank" rel="noopener">GitHub</a> · <a href="#" data-go="learn">Resources</a></footer>
+<script src="script.js"></script>
+<script src="ai-boost.js"></script>
+</body>
+</html>
